@@ -1,22 +1,5 @@
 const mongoose = require("mongoose");
 
-// const questionSchema = mongoose.Schema({
-//   question: {
-//     type: String,
-//     required: true,
-//   }
-//   //, response:[responseSchema]
-// });
-
-// const responseSchema = mongoose.Schema({
-//   response: {
-//     type: String,
-//   },
-// });
-
-
-//foreign key 
-
 const formSchema = mongoose.Schema(
   {
     title: {
@@ -31,24 +14,38 @@ const formSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    // questions: [
-    //   {
-    //     type:String,
-    //     responses:[
-    //       {type:String}
-    //     ]
-    //   }
+  
+    // questions:{
+    //   type:[
+    //     {
+    //       questionContent:{type:String}
+    //     }
+    //   ]
+    // },
 
-    // ],
+  
 
-    questions:{
-      type:[
-        {
-          questionContent:{type:String}
-        }
-      ],
-      default:[]
-    },
+
+questions:{
+  type:[
+    {
+      questionContent:{type:String},
+      responses:{
+        type:[
+          {
+            responseContent:{type:String,
+              userId: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User",
+                required: true,
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+},
 
 
 

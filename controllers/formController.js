@@ -1,27 +1,48 @@
+const { response } = require("express");
 const formModel = require("../models/form");
 
 //FOR CREATING A FORM...
 const createForm = async (req, res) => {
-  console.log(req.userId);
+//   console.log(req.userId);
   
 
-  const newForm = new formModel({
-    title: req.body.title,
-    description: req.body.description,
-    type:req.body.type,
-    questions: [
-        req.body.questions
-    ],
-    userId: req.userId,
-  });
+//   const newForm = new formModel({
+//     title: req.body.title,
+//     description: req.body.description,
+//     type:req.body.type,
+//     questions: [
+//         req.body.questions
+//     ],
+//     userId: req.userId,
+//   });
 
-  try {
-    await newForm.save();
-    res.status(201).json(newForm);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Something went wrong" });
-  }
+//   try {
+//     await newForm.save();
+//     res.status(201).json(newForm);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json({ message: "Something went wrong" });
+//   }
+
+
+
+formModel.create( {  'title': req.body.title, 
+                        'description': req.body.description, 
+                        'type': req.body.type,
+                        'questions':req.body.questions,
+                        'userId':req.userId
+                    }, 
+    (err, result ) => {
+        if (err) {
+            console.log('error', err)
+            res.send('Something went wrong...')
+        } else {
+            res.status(200).send(result);
+        }
+    })
+
+
+
 };
 
 //FOR UPDATING FORM
