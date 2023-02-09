@@ -4,7 +4,7 @@ const auth=require('../middlewares/auth');
 const authforadmin=require('../middlewares/authforadmin')
 
 
-const {getForms,createForm,getAllForms,deleteForm}=require('../controllers/formController')
+const {getForms,createForm,getAllForms,deleteForm,updateForm}=require('../controllers/formController')
 const formRouter=express.Router();
 
 
@@ -19,7 +19,7 @@ formRouter.post('/',auth,createForm)
 
 formRouter.delete("/:id",auth,deleteForm);
 
-// formRouter.put("/:id",auth,updateForm);
+formRouter.put("/:id",auth,updateForm);
 
 formRouter.get('/allforms',auth,authforadmin,getAllForms);
 
