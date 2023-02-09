@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+
+
 const formSchema = mongoose.Schema(
   {
     title: {
@@ -16,25 +18,12 @@ const formSchema = mongoose.Schema(
     },
 
     questions: {
-      type: [
+      type:[
         {
-          questionContent: { type: String },
-          responses: {
-            type: [
-              {
-                responseContent: {
-                  type: String,
-                  userId: {
-                    type: mongoose.Schema.Types.ObjectId,
-                    ref: "User",
-                    required: true,
-                  },
-                },
-              },
-            ],
-          },
-        },
-      ],
+          questionContent:{type:String},
+          questionNumber:{type:Number}
+        }
+      ]
     },
 
     userId: {
