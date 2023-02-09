@@ -70,19 +70,19 @@ const getForms = async (req, res) => {
 
 
 //FOR GETTING ALL FORMS OF ALL USERS AS AN ADMIN...
-// const getAllForms =async (req,res)=>{
+const getAllForms =async (req,res)=>{
 
-// 	try{
-// 		const forms=await formModel.find()
-// 		res.status(200).json(forms);
+	try{
+		const forms=await formModel.find()
+		res.status(200).json(forms);
 
-// 	}
-// 	catch(error){
-// 		console.log(error);
-// 		res.status(500).json({message:"Something went wrong..."});
-// 	}
+	}
+	catch(error){
+		console.log(error);
+		res.status(500).json({message:"Something went wrong..."});
+	}
 
-// }
+}
 
 
 const testRoute = async (req,res)=>{
@@ -94,7 +94,7 @@ module.exports = {
 //   updateForm,
 //   deleteForm,
   getForms
-//  , getAllForms,
+ , getAllForms
 };
 
 
