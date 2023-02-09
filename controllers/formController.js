@@ -43,16 +43,35 @@ formModel.create( {  'title': req.body.title,
 // };
 
 //FOR DELETING A FORM
-// const deleteForm = async (req, res) => {
-//   const id = req.params.id;
-//   try {
-//     const form = await formModel.findByIdAndRemove(id);
-//     res.status(202).json(form);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({ message: "Something went wrong..." });
-//   }
-// };
+const deleteForm = async (req, res) => {
+  const id = req.params.id;
+  
+    let checker=false;
+    const usersForms=await formModel.find({
+      userId:req.userId
+    })
+
+    //searching inside the array for that form with id
+    for(let i=0;i<usersForms.length;i++){
+      if(id===usersForms[i].id)
+        checker=true;
+    }
+
+    if(checker===true){
+    try {
+      
+    const form = await formModel.findByIdAndRemove(id);
+    res.status(202).json(form);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Something went wrong..." });
+  }
+}
+else{
+  res.json({message:"You can't delete another user's form"});
+}
+};
+
 
 
 //FOR GETTING FORMS
@@ -92,7 +111,7 @@ const testRoute = async (req,res)=>{
 module.exports = {
   createForm,
 //   updateForm,
-//   deleteForm,
+  deleteForm,
   getForms
  , getAllForms
 };
