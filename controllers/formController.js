@@ -3,28 +3,6 @@ const formModel = require("../models/form");
 
 //FOR CREATING A FORM...
 const createForm = async (req, res) => {
-//   console.log(req.userId);
-  
-
-//   const newForm = new formModel({
-//     title: req.body.title,
-//     description: req.body.description,
-//     type:req.body.type,
-//     questions: [
-//         req.body.questions
-//     ],
-//     userId: req.userId,
-//   });
-
-//   try {
-//     await newForm.save();
-//     res.status(201).json(newForm);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({ message: "Something went wrong" });
-//   }
-
-
 
 formModel.create( {  'title': req.body.title, 
                         'description': req.body.description, 
@@ -115,28 +93,13 @@ module.exports = {
   createForm,
 //   updateForm,
 //   deleteForm,
-  getForms,
-  testRoute
+  getForms
 //  , getAllForms,
 };
 
 
 
-// "properties": [
-//     {
-//         "key": "string",
-//         "section": "string",
-//         "value": {
-//             "type": "string",
-//             "arrayOf": "string",
-//             "properties": [null],
-//             "default": "string",
-//             "required": true,
-//             "enum": ["string"],
-//             "displayType": "string"
-//         }
-// }
-// ]
+
 
 
 
