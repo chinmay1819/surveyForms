@@ -1,18 +1,9 @@
 const mongoose = require("mongoose");
 
 
-// const questionSchema = mongoose.Schema({
-//   questionNumber: { type: Number },
-//   questionContent: { type: String }
-// });
-
-
-
-
 
 const formSchema = mongoose.Schema(
   {
-    // _id:mongoose.Schema.ObjectId,
     title: {
       type: String,
       required: true,
@@ -26,23 +17,23 @@ const formSchema = mongoose.Schema(
       required: true,
     },
 
-    questions: {type:[{
-      questionNumber: { type: Number },
-      questionContent: { type: String }
-    }
-    ]} ,
+    questions: {
+      type:[
+        {
+          questionContent:{type:String},
+          questionNumber:{type:Number}
+        }
+      ]
+    },
 
-    userId:{
-      type:mongoose.Schema.Types.ObjectId,
-      ref:"User",
-      required:true
-  },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   { timestamps: true },
   { typeKey: "$type" }
 );
 
-
-
 module.exports = mongoose.model("Form", formSchema);
-// module.exports= mongoose.model("Questions", questionSchema);

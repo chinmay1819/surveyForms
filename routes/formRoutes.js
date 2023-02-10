@@ -8,10 +8,6 @@ const {getForms,createForm,getAllForms,deleteForm,updateForm}=require('../contro
 const formRouter=express.Router();
 
 
-
-
-
-
 formRouter.get('/',auth,getForms)
 
 formRouter.post('/',auth,createForm)
@@ -22,8 +18,6 @@ formRouter.delete("/:id",auth,deleteForm);
 formRouter.put("/:id",auth,updateForm);
 
 formRouter.get('/allforms',auth,authforadmin,getAllForms);
-
-
 
 
 module.exports=formRouter

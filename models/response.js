@@ -1,35 +1,27 @@
 const mongoose = require("mongoose");
 
-
+// const responseObject = mongoose.Schema(
+//   {
+//     questionId: {String},
+//     answer: {String}
+//   }
+// );
 
 const responseSchema = mongoose.Schema(
-    {
-      // _id:mongoose.Schema.ObjectId,
-      responseContent: {
-        type: String
-      },
-      
-      userId:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"User",
-        required:true
-    }
-  
-    //   questionId: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "Questions",
-    //   }
-
-// ,
-    //TO BIND TO THE QUESTION
-    // questionId :{
-    //     type:mongoose.Schema.Types.ObjectId,
-    //     ref
-    // }
+  {
+    responseContent: {type:String},
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
-    {timestamps:true},
-    { typeKey: "$type" }
-  );
-  
+    formId:{type:String},
+    questionId:{
+      type:String
+    }
+  },
+  { timestamps: true },
+  { typeKey: "$type" }
+);
 
-module.exports= mongoose.model("Response",responseSchema);
+module.exports = mongoose.model("Response", responseSchema);

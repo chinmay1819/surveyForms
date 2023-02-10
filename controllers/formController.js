@@ -4,7 +4,8 @@ const formModel = require("../models/form");
 //FOR CREATING A FORM...
 const createForm = async (req, res) => {
 
-formModel.create( {  'title': req.body.title, 
+formModel.create( {  
+                        'title': req.body.title, 
                         'description': req.body.description, 
                         'type': req.body.type,
                         'questions':req.body.questions,
@@ -111,7 +112,6 @@ module.exports = {
   getForms
  , getAllForms
 };
-
 
 
 

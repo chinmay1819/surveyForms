@@ -7,6 +7,7 @@ const createResponse = async (req, res) => {
 
 responseModel.create( {  'responseContent': req.body.responseContent, 
                         'userId':req.userId,
+                        'formId':req.body.formId,
                         'questionId':req.body.questionId
                     }, 
     (err, result ) => {
@@ -20,5 +21,6 @@ responseModel.create( {  'responseContent': req.body.responseContent,
 
 
 };
+
 
 module.exports=createResponse;
