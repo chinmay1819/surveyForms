@@ -1,11 +1,5 @@
 const mongoose = require("mongoose");
 
-// const responseObject = mongoose.Schema(
-//   {
-//     questionId: {String},
-//     answer: {String}
-//   }
-// );
 
 const responseSchema = mongoose.Schema(
   {

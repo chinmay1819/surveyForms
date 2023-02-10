@@ -4,7 +4,8 @@ const auth=require('../middlewares/auth');
 // const authforadmin=require('../middlewares/authforadmin')
 
 
-const createResponse=require('../controllers/responseController')
+const {createResponse,getResponse}=require('../controllers/responseController')
+
 const responseRouter=express.Router();
 
 
@@ -12,7 +13,7 @@ const responseRouter=express.Router();
 
 
 
-// responseRouter.get('/',auth,getForms)
+responseRouter.get('/',auth,getResponse)
 
 responseRouter.post('/',auth,createResponse)
 
