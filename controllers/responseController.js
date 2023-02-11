@@ -1,7 +1,8 @@
 const express = require("express");
 
 const responseModel=require('../models/response')
-const formModel=require('../models/form')
+const formModel=require('../models/form');
+
 
 //FOR CREATING A RESPONSE TO THE FORM...
 const createResponse = async (req, res) => {
@@ -28,19 +29,18 @@ responseModel.create( {  'responseContent': req.body.responseContent,
 //FOR GETTING RESPONSE
 const getResponse = async (req, res) => {
     let qid=req.body.questionId;
+    let fid=req.body.formId;
     try {
       const response = await responseModel.find({
         userId: req.userId,
         questionId:req.body.questionId,
         formId:req.body.formId
       });
-      const questionsArray=await formModel.find();
-
       
-    //   res.status(200).json(response);
-
+      const requiredForm=await formModel.findById(fid);
+    
     res.status(200).json({
-        response,question
+        response
     });
 
     
@@ -54,7 +54,29 @@ const getResponse = async (req, res) => {
 
 
 
+  // for getting all responses of a question with qid and form id 
+  
 
+
+
+
+
+
+
+
+
+
+
+
+//FOR DELETING A RESPONSE BY USING ID 
+const deleteResponse = async (req, res) => {
+  const id = req.params.id;
+
+    const response = await responseModel.findByIdAndRemove(id);
+    res.status(202).json(response);
+  
+
+};
 
 
 
@@ -62,7 +84,8 @@ const getResponse = async (req, res) => {
 
 module.exports= {
     createResponse,
-    getResponse
+    getResponse,
+    deleteResponse
 }
 
 
