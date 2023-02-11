@@ -54,8 +54,6 @@ const getResponse = async (req, res) => {
 
 
 
-  // for getting all responses of a question with qid and form id 
-  
 
 
 
@@ -79,13 +77,34 @@ const deleteResponse = async (req, res) => {
 };
 
 
+// FOR UPDATING A RESPONSE BY USING ID
+
+
+const updateResponse = async (req, res) => {
+  const id = req.params.id;
+  const { responseContent,questionId,formId } = req.body;
+  const newResponse = {
+   responseContent: responseContent,
+    questionId:questionId ,
+    formId:formId
+  };
+  try {
+    await responseModel.findByIdAndUpdate(id, newResponse, { new: true });
+    res.status(200).json(newResponse);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Something went wrong.." });
+  }
+};
+
 
 
 
 module.exports= {
     createResponse,
     getResponse,
-    deleteResponse
+    deleteResponse,
+    updateResponse
 }
 
 
