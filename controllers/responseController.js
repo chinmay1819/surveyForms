@@ -26,7 +26,7 @@ responseModel.create( {  'responseContent': req.body.responseContent,
 
 
 
-//FOR GETTING RESPONSE
+//FOR GETTING RESPONSE --> it only returns response of that user
 const getResponse = async (req, res) => {
     let qid=req.body.questionId;
     let fid=req.body.formId;
@@ -54,12 +54,22 @@ const getResponse = async (req, res) => {
 
 
 
+  // FOR GETTING ALL RESPONSES OF A QUESTION (ONLY FOR ADMIN)
+  const getAllResponses = async (req,res)=>{
+    let qid=req.body.questionId;
+    let fid=req.body.formId;
+    try{
+      const responses=await responseModel.find({"questionId":qid ,  "formId":fid})
+      res.status(200).json(responses);
+  
+    }
+    catch(error){
+      console.log(error);
+      res.status(500).json({message:"Something went wrong..."});
+    }
 
-
-
-
-
-
+  }
+  
 
 
 
@@ -104,7 +114,8 @@ module.exports= {
     createResponse,
     getResponse,
     deleteResponse,
-    updateResponse
+    updateResponse,
+    getAllResponses
 }
 
 
