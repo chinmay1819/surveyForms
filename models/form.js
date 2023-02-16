@@ -22,6 +22,11 @@ const formSchema = mongoose.Schema(
           questionType: {
             type: String
             // required: true,
+          },
+          possibleResponses:{
+            type:[
+              {type:String}
+            ]
           }
         }
       ]
